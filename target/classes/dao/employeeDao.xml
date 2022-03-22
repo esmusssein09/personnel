@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.employeeDao">
+    <!--配置查询所有-->
+    <select id="findAll" resultType="domain.employee">
+        select * from employee
+    </select>
+
+    <!-- 保存用户 -->
+    <insert id="saveEmployee" parameterType="domain.employee">
+        insert into employee(name, sex,address,age,birth,phone,password,state,department_id,position_id,project_id,salary,performance,mail,education,politics_status)
+        values (#{name}, #{sex},#{address},#{age},#{birth},#{phone},#{password},#{state},#{department_id},#{position_id},#{project_id},#{salary},#{performance},#{mail,#{education},#{politics_status});
+    </insert>
+
+
+    <!-- 更新用户 -->
+
+
+    <!-- 删除用户-->
+    <delete id="deleteEmployee" parameterType="java.lang.Integer">
+        delete from employee where id = #{id}
+    </delete>
+
+    <!-- 根据id查询用户 -->
+    <select id="findById" parameterType="INT" resultMap="employeeMap">
+        select * from employee where id = #{id}
+    </select>
+
+    <!-- 根据名称模糊查询 -->
+    <select id="findByName" parameterType="string" resultMap="employeeMap">
+        select * from employee where name like #{name}
+        <!-- select * from admin where name like '%${value}%'-->
+    </select>
+
+    <!-- 获取用户的总记录条数 -->
+    <select id="findTotal" resultType="int">
+        select count(id) from employee;
+    </select>
+</mapper>

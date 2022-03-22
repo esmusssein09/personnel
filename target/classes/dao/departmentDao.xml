@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.departmentDao">
+    <!--配置查询所有-->
+    <select id="findAll" resultType="domain.department">
+        select * from department
+    </select>
+
+    <!-- 保存用户 -->
+    <insert id="saveDepartment" parameterType="domain.department">
+        insert into department(name,people_num) values (#{name},#{people_num});
+    </insert>
+
+
+    <!-- 更新用户 -->
+    <update id="updateDepartment" parameterType="department">
+        update department set name=#{name},people_num=#{people_num} where id=#{id}
+    </update>
+
+    <!-- 删除用户-->
+    <delete id="deleteDepartment" parameterType="java.lang.Integer">
+        delete from department where id = #{id}
+    </delete>
+
+    <!-- 根据id查询用户 -->
+    <select id="findById" parameterType="INT" resultMap="departmentMap">
+        select * from department where id = #{id}
+    </select>
+
+    <!-- 根据名称模糊查询 -->
+    <select id="findByName" parameterType="string" resultMap="departmentMap">
+        select * from department where name like #{name}
+        <!-- select * from admin where name like '%${value}%'-->
+    </select>
+
+    <!-- 获取用户的总记录条数 -->
+    <select id="findTotal" resultType="int">
+        select count(id) from department;
+    </select>
+
+</mapper>
