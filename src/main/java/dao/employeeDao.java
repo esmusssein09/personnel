@@ -2,10 +2,7 @@ package dao;
 
 import domain.department;
 import domain.employee;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -32,9 +29,20 @@ public interface employeeDao {
     public employee findById(Integer id)throws Exception;
 
     //名字查询
-    @Select("select * from employee where name = #{name}")
 
-    public List<employee> findByName(String name)throws Exception;
+    @Select("select * from employee where name=#{name}")
+    /*
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "phoneNum", column = "phoneNum"),
+            @Result(property = "status", column = "status"),
+            @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.itheima.ssm.dao.IRoleDao.findRoleByUserId"))
+    })
+*/
+    public employee findByName(String name)throws Exception;
 
     //查询总用户数
     @Select("select * from employee")

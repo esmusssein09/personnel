@@ -42,7 +42,7 @@ public class MybatisTest {
      * 测试查询所有
      */
     @Test
-    public void testFindAll(){
+    public void testFindAll() throws Exception {
         //5.执行查询所有方法
         List<admin> admins = adminDao.findAll();
         for(admin admin : admins){
@@ -55,7 +55,7 @@ public class MybatisTest {
      * 测试保存操作
      */
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         admin admin = new admin();
         admin.setPassword("123456");
         admin.setName("小丑");

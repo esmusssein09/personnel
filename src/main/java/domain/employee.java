@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class employee implements Serializable {
     private Integer id;
@@ -24,7 +25,40 @@ public class employee implements Serializable {
     private String education;
     private String politics_status;
 
+//角色控制
+    private List<Role> roles;
+    private int status;
+    private String statusStr;
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getStatusStr() {
+        //状态0 未开启 1 开启
+        if (status == 0) {
+            statusStr = "未开启";
+        } else if (status == 1) {
+            statusStr = "开启";
+        }
+        return statusStr;
+    }
+
+    public void setStatusStr(String statusStr) {
+        this.statusStr = statusStr;
+    }
 
     public Integer getId() {
         return id;
@@ -182,6 +216,9 @@ public class employee implements Serializable {
                 ", mail='" + mail + '\'' +
                 ", education='" + education + '\'' +
                 ", politics_status='" + politics_status + '\'' +
+                ", roles=" + roles +
+                ", status=" + status +
+                ", statusStr='" + statusStr + '\'' +
                 '}';
     }
 }

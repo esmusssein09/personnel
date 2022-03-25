@@ -6,10 +6,11 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface employeeService {
+public interface employeeService extends UserDetailsService {
     //查询全部
     public List<employee> findAll()throws Exception;
     //插入
@@ -25,7 +26,7 @@ public interface employeeService {
     public employee findById(Integer id)throws Exception;
 
     //名字查询
-    public List<employee> findByName(String name)throws Exception;
+    public employee findByName(String name)throws Exception;
 
     //查询总用户数
     public int findTotal()throws Exception;
