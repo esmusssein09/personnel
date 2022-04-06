@@ -1,4 +1,5 @@
 import dao.adminDao;
+import dao.userDao;
 import domain.admin;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,7 @@ public class MybatisTest {
     private InputStream in;
     private SqlSession sqlSession;
     private adminDao adminDao;
+    private userDao userDao;
 
     @Before//用于在测试方法执行之前执行
     public void init()throws Exception{
@@ -43,7 +45,7 @@ public class MybatisTest {
      */
     @Test
     public void testFindAll() throws Exception {
-        //5.执行查询所有方法
+        //执行查询所有方法
         List<admin> admins = adminDao.findAll();
         for(admin admin : admins){
             System.out.println(admin);
@@ -52,18 +54,14 @@ public class MybatisTest {
     }
 
     /**
-     * 测试保存操作
+     * 测试删除操作
      */
     @Test
-    public void testSave() throws Exception {
-        admin admin = new admin();
-        admin.setPassword("123456");
-        admin.setName("小丑");
+    public void testDelete() throws Exception {
 
-        //5.执行保存方法
-        adminDao.saveAdmin(admin);
+        //执行删除方法
+        adminDao.deleteAdmin(2);
 
-        System.out.println("保存操作之后："+admin);
     }
 
 
